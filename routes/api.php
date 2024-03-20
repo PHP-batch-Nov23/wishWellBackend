@@ -12,18 +12,50 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //Route::resource('/allusers', \App\Http\Controllers\AllUserController::class);//->middleware(\App\Http\Middleware\ValidateToken::class);
 
     Route::get('/get',[App\Http\Controllers\AllUserController::class, 'index']);
-
+    Route::post('/login',[App\Http\Controllers\AllUserController::class, 'login']);
     Route::post('/register',[App\Http\Controllers\AllUserController::class, 'store']);
+    // Route::put('/update/{id}',[App\Http\Controllers\AllUserController::class, 'update']);
+    // Route::delete('/delete/{id}',[App\Http\Controllers\AllUserController::class, 'destroy']);
+
+
+
+
+
+
+
 
     Route::post('/donation',[App\Http\Controllers\DonationController::class, 'store']);
 
+
+
+
+
+
+    Route::get('/campaign',[App\Http\Controllers\CampaignController::class, 'index']);
     Route::post('/campaign',[App\Http\Controllers\CampaignController::class, 'store']);
+    Route::post('/campaign/update',[App\Http\Controllers\CampaignController::class, 'update']);
+
+
+
+
+    Route::get('/Dashboard',[App\Http\Controllers\AllUserController::class, 'Dashboard'])->middleware('checkUserRole');
+
+
+
+
+
+
+    Route::get('/admin/users', [AdminController::class, 'index']);
+    Route::get('/admin/users/create', [AdminController::class, 'create']);
+    Route::post('/admin/users', [AdminController::class, 'store']);
+    Route::get('/admin/users/{id}', [AdminController::class, 'show']);
+    Route::get('/admin/users/{id}/edit', [AdminController::class, 'edit']);
+    Route::put('/admin/users/{id}', [AdminController::class, 'update']);
+    Route::delete('/admin/users/{id}', [AdminController::class, 'destroy']);
 
 
     
-    Route::put('/update/{id}',[App\Http\Controllers\AllUserController::class, 'update']);
-    
-    Route::delete('/delete/{id}',[App\Http\Controllers\AllUserController::class, 'destroy']);
+
     
     
     
